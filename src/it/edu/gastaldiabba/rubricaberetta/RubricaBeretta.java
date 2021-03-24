@@ -10,23 +10,25 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javax.swing.JFileChooser;
+import java.io.File;
 
 /**
  *
- * @author alecappe
+ * @authors alecappe
  */
 public class RubricaBeretta extends Application {
-    
+     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("BerettaGui.fxml"));
         
         Scene scene = new Scene(root);
         
         stage.setScene(scene);
         stage.show();
     }
-
+    
     /**
      * @param args the command line arguments
      */
@@ -34,4 +36,17 @@ public class RubricaBeretta extends Application {
         launch(args);
     }
     
+    
+    public static File LeggiXml(){
+        
+        JFileChooser chooser = new JFileChooser();
+        
+        if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+            return chooser.getSelectedFile();
+        } else {
+            System.out.println("l'utente ha annullato o cancellato la finestra");
+            return null;
+        }
+
+}
 }

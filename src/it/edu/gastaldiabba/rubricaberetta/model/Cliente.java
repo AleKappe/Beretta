@@ -98,7 +98,10 @@ public class Cliente{
         this.mail = mail;
         this.pec = pec;
     }
-
+    /**
+     * Metodo toString che stampa un oggetto di tipo cliente
+     * @return String
+     */
     @Override
     public String toString() {
         return "Cliente{" + "ragSoc=" + ragSoc +
