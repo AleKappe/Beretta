@@ -3,28 +3,31 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package rubricaberetta;
+package it.edu.gastaldiabba.rubricaberetta.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.layout.Pane;
 
 /**
  * FXML Controller class
  *
  * @author alecappe
  */
-public class FXMLDocumentController implements Initializable {
+public class BerettaGuiController implements Initializable {
 
     @FXML
-    private Button button;
+    private Pane sfondo;
     @FXML
-    private Label label;
-
+    private Button bottone_aggiungi;
+    @FXML
+    private Button bottone_elimina;
+    @FXML
+    private ChoiceBox<?> ordina_per;
     /**
      * Initializes the controller class.
      */
@@ -32,9 +35,5 @@ public class FXMLDocumentController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-
-    @FXML
-    private void handleButtonAction(ActionEvent event) {
-    }
     
 }
