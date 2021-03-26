@@ -1,0 +1,49 @@
+#sfondo{
+    -fx-background-color:rgb(255, 255, 255);
+}
+
+.list-view{
+    -fx-background-color:rgb(31, 165, 255);
+    -fx-background-radius:10;
+}
+
+.toggle-button{
+    -fx-background-color:rgb(31, 165, 255);
+    -fx-background-radius:20;
+    -fx-text-fill:rgb(255, 255, 255);
+
+}
+
+#bottone_aggiungi{
+    -fx-background-color:rgb(0, 139, 0);
+    -fx-text-fill:rgb(255, 255, 255);
+}
+
+#bottone_elimina{
+    -fx-background-color:rgb(211, 4, 4);
+    -fx-text-fill:rgb(255, 255, 255);
+}
+
+#searchBar{
+    -fx-border-color:rgb(31, 165, 255);
+    -fx-border-width:1;
+    -fx-border-style:solid;
+
+}
+
+#ordina_per{
+    -fx-background-color: rgb(31, 165,255);
+    -fx-background-radius: 20;
+    -fx-text-fill:rgb(255, 255, 255);
+
+}
+/*
+.ordina_per-accordion-heading .ordina_per-accordion.collapsed{
+    -fx-background-color: transparent;
+}
+*/
+.accordion-heading .accordion-toggle.collapsed {
+    -fx-background-color: blue;
+}
+
+
