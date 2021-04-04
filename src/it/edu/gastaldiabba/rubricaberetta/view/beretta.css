@@ -32,7 +32,7 @@
 }
 
 #ordina_per{
-    -fx-background-color: rgb(31, 165,255);
+    -fx-background-color: rgb(31, 165, 255);
     -fx-background-radius: 20;
     -fx-text-fill:rgb(255, 255, 255);
 
@@ -42,8 +42,28 @@
     -fx-background-color: transparent;
 }
 */
-.accordion-heading .accordion-toggle.collapsed {
-    -fx-background-color: blue;
+.accordion .titled-pane .title{
+    -fx-background-color:rgb(31, 165, 255);
+    
 }
 
+.titled-pane > .title
+{
+-fx-background-color: linear-gradient(rgb(87, 221, 25), rgb(235, 30, 149));
+-fx-background-insets: 0, 1, 2;
+-fx-background-radius: 10 10 0 0, 9 9 0 0, 8 8 0 0;
+}
+
+
+.titled-pane > *.content
+{
+-fx-background-color: rgb(157, 21, 21);
+-fx-background-radius: 0 0 10 10, 0 0 9 9, 0 0 8 8;
+-fx-padding: 2;
+ }
+
+.titled-pane:focused > .title > .arrow-button .arrow
+{
+-fx-background-color: white;
+}
 
