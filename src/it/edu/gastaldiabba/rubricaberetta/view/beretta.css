@@ -11,7 +11,11 @@
     -fx-background-color:rgb(31, 165, 255);
     -fx-background-radius:20;
     -fx-text-fill:rgb(255, 255, 255);
+}
 
+
+.toggle-button:focused{
+    -fx-background-color:rgb lime;
 }
 
 #bottone_aggiungi{
@@ -28,28 +32,18 @@
     -fx-border-color:rgb(31, 165, 255);
     -fx-border-width:1;
     -fx-border-style:solid;
-
 }
 
 #ordina_per{
     -fx-background-color: rgb(31, 165, 255);
     -fx-background-radius: 20;
     -fx-text-fill:rgb(255, 255, 255);
+}
 
-}
-/*
-.ordina_per-accordion-heading .ordina_per-accordion.collapsed{
-    -fx-background-color: transparent;
-}
-*/
-.accordion .titled-pane .title{
-    -fx-background-color:rgb(31, 165, 255);
-    
-}
 
 .titled-pane > .title
 {
--fx-background-color: linear-gradient(rgb(87, 221, 25), rgb(235, 30, 149));
+-fx-background-color:rgb(31, 165, 255);
 -fx-background-insets: 0, 1, 2;
 -fx-background-radius: 10 10 0 0, 9 9 0 0, 8 8 0 0;
 }
@@ -60,10 +54,17 @@
 -fx-background-color: rgb(157, 21, 21);
 -fx-background-radius: 0 0 10 10, 0 0 9 9, 0 0 8 8;
 -fx-padding: 2;
+-fx-border-color: transparent;
  }
 
-.titled-pane:focused > .title > .arrow-button .arrow
-{
+.titled-pane:focused > .title > .arrow-button .arrow{
 -fx-background-color: white;
 }
 
+#dark_mode{
+    -fx-background-color:rgb(255, 255, 255);
+    -fx-text-fill:rgb(0, 0, 0);
+    -fx-background-radius:20;   
+    -fx-border-color:rgb(31, 165, 255);
+    -fx-border-radius:20; 
+}
