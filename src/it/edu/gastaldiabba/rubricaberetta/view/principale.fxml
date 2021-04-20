@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+
+<Pane fx:id="sfondo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="background" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane fx:id="background" layoutX="176.0" layoutY="119.0" prefHeight="279.0" prefWidth="245.0">
+         <children>
+            <ListView layoutX="-1.0" layoutY="-3.0" prefHeight="279.0" prefWidth="245.0" />
+         </children>
+      </AnchorPane>
+      <ToggleButton layoutX="77.0" layoutY="207.0" mnemonicParsing="false" text="filtro 2" />
+      <ToggleButton layoutX="14.0" layoutY="207.0" mnemonicParsing="false" text="filtro 1">
+         <textFill>
+            <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+               </stops>
+            </RadialGradient>
+         </textFill></ToggleButton>
+      <Button fx:id="bottone_aggiungi" layoutX="176.0" layoutY="74.0" mnemonicParsing="false" text="Aggiungi" />
+      <Button fx:id="bottone_elimina" layoutX="255.0" layoutY="74.0" mnemonicParsing="false" text="Elimina" />
+      <Accordion layoutX="14.0" layoutY="119.0" prefHeight="51.0" prefWidth="123.0">
+        <panes>
+          <TitledPane fx:id="ordina_per_aperto" animated="false" prefHeight="52.0" prefWidth="143.0" text="ordina per" />
+        </panes>
+      </Accordion>
+      <AnchorPane layoutX="411.0" layoutY="119.0" prefHeight="279.0" prefWidth="102.0">
+         <children>
+            <ListView layoutX="24.0" layoutY="-6.0" prefHeight="279.0" prefWidth="151.0" />
+         </children>
+      </AnchorPane>
+      <ToggleButton fx:id="dark_mode" layoutX="14.0" layoutY="29.0" mnemonicParsing="false" text="Dark Mode" />
+   </children>
+   <stylesheets>
+      <URL value="@dark_mode.css" />
+      <URL value="@beretta.css" />
+   </stylesheets>
+</Pane>
