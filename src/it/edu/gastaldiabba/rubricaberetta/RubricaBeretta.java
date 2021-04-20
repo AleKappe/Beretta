@@ -5,6 +5,8 @@
  */
 package it.edu.gastaldiabba.rubricaberetta;
 
+import it.edu.gastaldiabba.rubricaberetta.model.Cliente;
+import it.edu.gastaldiabba.rubricaberetta.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -21,7 +23,7 @@ public class RubricaBeretta extends Application {
      
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("BerettaGui.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("view/principale.fxml"));
         
         Scene scene = new Scene(root);
         
@@ -34,19 +36,11 @@ public class RubricaBeretta extends Application {
      */
     public static void main(String[] args) {
         launch(args);
+        File path = Cliente.scegliFile();
+        
+        System.out.println(path.getPath());
+        Cliente[] Clie;
+        Clie = Cliente.caricaArrayDaFileXML(path.getPath());
     }
-    
-    
-    public static File LeggiXml(){
-        
-        JFileChooser chooser = new JFileChooser();
-        
-        if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
-            return chooser.getSelectedFile();
-        } else {
-            System.out.println("l'utente ha annullato o cancellato la finestra");
-            return null;
-        }
 
-}
 }
