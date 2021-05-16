@@ -36,10 +36,6 @@ public class RubricaBeretta extends Application {
      */
     public static void main(String[] args) {
         launch(args);
-        File path = Cliente.scegliFile();
-        
-        System.out.println(path.getPath());
-        
     }
 
 }
