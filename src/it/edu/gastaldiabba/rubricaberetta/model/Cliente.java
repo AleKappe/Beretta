@@ -134,13 +134,12 @@ public class Cliente{
         this.mail = mail;
         this.pec = pec;
         this.Nc = node;
-    }
+    }  
 
     @Override
     public String toString() {
-        return "Cliente{" +"AffidabilitÃ ="+ Aff + ", ragSoc=" + ragSoc + ", indirizzo=" + indirizzo + ", pIva=" + pIva + ", citta=" + citta + ", nTelefono=" + nTelefono + ", mail=" + mail + ", pec=" + pec + ", Nc=" + Nc + '}';
+        return "Cliente{" + "Aff=" + Aff + ", ragSoc=" + ragSoc + ", indirizzo=" + indirizzo + ", pIva=" + pIva + ", citta=" + citta + ", nTelefono=" + nTelefono + ", mail=" + mail + ", pec=" + pec + ", Nc=" + Nc + '}';
     }
-    
     
     
     //metodi per xml 
