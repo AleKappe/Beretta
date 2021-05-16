@@ -2,6 +2,7 @@ package it.edu.gastaldiabba.rubricaberetta.model;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.swing.JFileChooser;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -34,6 +35,7 @@ import java.io.*;
 
 public class Cliente{
     
+    private int Aff;
     private String ragSoc;
     private String indirizzo;
     private String pIva;
@@ -41,16 +43,26 @@ public class Cliente{
     private String nTelefono;
     private String mail;
     private String pec;
-    private Note Nc;
+    private String Nc;
 
-    public static File getXmlFile() {
-        return xmlFile;
+    public int getAff() {
+        return Aff;
     }
 
-    public static void setXmlFile(File xmlFile) {
-        Cliente.xmlFile = xmlFile;
+    public void setAff(int Aff) {
+        this.Aff = Aff;
     }
+
+    public String getNc() {
+        return Nc;
+    }
+
+    public void setNc(String Nc) {
+        this.Nc = Nc;
+    }
+
     private static File xmlFile = new File("todo.xml");
+    
     
     public String getRagSoc() {
         return ragSoc;
@@ -80,9 +92,6 @@ public class Cliente{
         return pec;
     }
     
-
-    
-    
     public void setRagSoc(String ragSoc) {
         this.ragSoc = ragSoc;
     }
@@ -111,11 +120,12 @@ public class Cliente{
         this.pec = pec;
     }
 
-    //costruttore vuoto
+    
     public Cliente() {
     }
 
-    public Cliente(String ragSoc, String indirizzo, String pIva, String citta, String nTelefono, String mail, String pec) {
+    public Cliente(int aff, String ragSoc, String indirizzo, String pIva, String citta, String nTelefono, String mail, String pec, String node) {
+        this.Aff = aff;
         this.ragSoc = ragSoc;
         this.indirizzo = indirizzo;
         this.pIva = pIva;
@@ -123,17 +133,26 @@ public class Cliente{
         this.nTelefono = nTelefono;
         this.mail = mail;
         this.pec = pec;
+        this.Nc = node;
     }
 
     @Override
     public String toString() {
-        return "Cliente{" + "ragSoc=" + ragSoc + ", indirizzo=" + indirizzo + ", pIva=" + pIva + ", citta=" + citta + ", nTelefono=" + nTelefono + ", mail=" + mail + ", pec=" + pec + ", Nc=" + Nc + '}';
+        return "Cliente{" +"AffidabilitÃ ="+ Aff + ", ragSoc=" + ragSoc + ", indirizzo=" + indirizzo + ", pIva=" + pIva + ", citta=" + citta + ", nTelefono=" + nTelefono + ", mail=" + mail + ", pec=" + pec + ", Nc=" + Nc + '}';
     }
     
-    private void ClienteArrayList(){
+    
+    
+    //
+    public static void ClienteArrayList(Cliente[] cln){
+        ArrayList<Cliente> ClList = new ArrayList<Cliente>();
         
+        
+        System.out.println(ClList.toString());
     }
     
+
+    //metodi per xml 
     
     public static File scegliFile() {
         JFileChooser chooser = new JFileChooser();
@@ -145,45 +164,162 @@ public class Cliente{
             return null;
         }
     }
-    public static void printPersonaArray(Cliente[] Clie) {
+    public static void printPersonaArray(ArrayList<Cliente> Clie) {
 
         for (Cliente Cln : Clie) {
             System.out.println(Cln.toString());
         }
     }
-    public static Cliente[] caricaArrayDaFileXML(String pathname){
+ 
+    /////////////////////////////////////////////////
+    // GESTIONE DEGLI ORDINAMENTI E METODI COMPARE //
+    /////////////////////////////////////////////////
+    
+    static int compareRagSoc(Cliente a, Cliente b) {
+        return a.getRagSoc().compareToIgnoreCase(b.getRagSoc());
+    } 
+    
+    static int compareAff(Cliente a, Cliente b) {
+        return a.getAff() - b.getAff();
+    } 
+    public static ArrayList<Cliente> sortClienti(ArrayList<Cliente> Clie, String type) {
+        //Al metodo sort dell'oggetto ArrayList passiamo come argomento 
+        //una funzione da usare ossia il metodo compareRagSoc o compareAff
+        //per fare cio' usiamo la sintassi classe::metodo e non la chiamata 
+        //del metodo statico class.metodo(parametri)
+        if (type.equals("RagSoc")) {
+            Clie.sort(Cliente::compareRagSoc);
+        }else if(type.equals("Aff"))  { 
+            Clie.sort(Cliente::compareAff); 
+        }
+        return Clie;
+    }
+    ///////////////////////////////////////////////////
+    
+    ///////////////////////
+    // FILTRI ARRAY LIST //
+    ///////////////////////
+    
+    public static ArrayList<Cliente> filterForCity(ArrayList<Cliente> Clie, String city) {
+        
+        if (!city.isEmpty()) {
+            ArrayList<Cliente> clieList = new ArrayList<Cliente>();
+        
+            for (Cliente Cln : Clie) {
+               if (Cln.getCitta().equals(city)) {
+                   //System.out.println(Cln.toString());
+                   clieList.add(Cln);
+                }   
+           }
+        return clieList;
+        }
+        return Clie;
+    }
+
+    public static ArrayList<Cliente> filterForReliability(ArrayList<Cliente> Clie, Integer aff) {
+        //TO DO Aff deve essere un numero maggiore o uguale a 0
+        if (aff>=0) {
+            ArrayList<Cliente> clieList = new ArrayList<Cliente>();
+            for (Cliente Cln : Clie) {
+               if (Cln.getAff() >= aff) {
+                  //System.out.println(Cln.toString());
+                  clieList.add(Cln);
+               }   
+            }
+            return clieList;
+        }
+        return Clie;
+    }
+    ////////////////////////////////////////////////////////////////////////
+    
+    public static Cliente getragSoc(ArrayList<Cliente> Clie, String ragSoc) {
+        
+        for (Cliente Cln : Clie) {
+            if (Cln.getRagSoc().equals(ragSoc)) {
+               //System.out.println(Cln.toString());
+               return Cln;
+            }   
+        }
+        return null;
+    }
+    
+    public static ArrayList<String> getAllragSoc(ArrayList<Cliente> Clie) {
+        
+        ArrayList<String> RagSoc = new ArrayList<String>();
+        for (Cliente Cln : Clie) {
+          RagSoc.add(Cln.getRagSoc());
+        }
+        return RagSoc;
+    }    
+    
+    
+    //METODO PER PREPARARE LA LISTA DI RAGIONI SOCIALI
+    //BASATA SU FILTRI SELEZIONATI E ORDINAMENTI
+    public static ArrayList<String> ragSocList(ArrayList<Cliente> Clie, 
+                                               String fCity,//filtro per citta se vuoto non filtra
+                                               Integer fAff,//filtro per maggiore uguale affidabilita se null non filtra
+                                               String ord) {//per ragione sociale o Affidabilita o niente
+        ArrayList<String> RagSoc = new ArrayList<String>();
+        if (fAff == null) {
+            fAff = -1;
+        }
+        if (!Clie.isEmpty()) {
+           ArrayList<Cliente> clieList = new ArrayList<Cliente>();
+        
+           clieList = Cliente.filterForCity(Clie, fCity);
+           if (!clieList.isEmpty()) {
+               clieList = Cliente.filterForReliability(clieList, fAff);
+           }
+           
+           if (!clieList.isEmpty()) {
+               clieList = Cliente.sortClienti(clieList, ord);
+           }
+           
+           if (!clieList.isEmpty()) {
+               RagSoc = Cliente.getAllragSoc(clieList); 
+           }  
+        }
+        
+        return RagSoc;
+    }
+    
+    public static ArrayList<Cliente> caricaArrayDaFileXML(String pathname){
 
         try {
             File selectedFile = new File(pathname);
-//creating a constructor of file class and parsing an XML file          
-//an instance of factory that gives a document builder
+            //creating a constructor of file class and parsing an XML file          
+            //an instance of factory that gives a document builder
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-//an instance of builder to parse the specified xml file
+            //an instance of builder to parse the specified xml file
             DocumentBuilder db = dbf.newDocumentBuilder();
             Document doc = db.parse(selectedFile);
             doc.getDocumentElement().normalize();
-//            System.out.println("Root element: " + doc.getDocumentElement().getNodeName());
+            //System.out.println("Root element: " + doc.getDocumentElement().getNodeName());
             NodeList nodeList = doc.getElementsByTagName("cliente");
-//         System.out.println("\nCi sono " + Integer.toString(nodeList.getLength()) + " elementi di tipo  persona");
-            Cliente[] clie = new Cliente[nodeList.getLength()];
-// nodeList is not iterable, so we are using for loop
+            //System.out.println("\nCi sono " + Integer.toString(nodeList.getLength()) + " elementi di tipo  cliente");
+            //Cliente[] clie = new Cliente[nodeList.getLength()];
+            ArrayList<Cliente> clieList = new ArrayList<Cliente>();
+            // nodeList is not iterable, so we are using for loop
             for (int itr = 0; itr < nodeList.getLength(); itr++) {
                 Node node = nodeList.item(itr);
-//                System.out.println("\nNode Name :" + node.getNodeName());
+            //System.out.println("\nNode Name :" + node.getNodeName());
                 if (node.getNodeType() == Node.ELEMENT_NODE) {
                     Element eElement = (Element) node;
-                    clie[itr] = new Cliente();
-                    clie[itr].setRagSoc(eElement.getElementsByTagName("RagSoc").item(0).getTextContent());
-                    clie[itr].setIndirizzo(eElement.getElementsByTagName("Indirizzo").item(0).getTextContent());
-                    clie[itr].setpIva(eElement.getElementsByTagName("pIva").item(0).getTextContent());
-                    clie[itr].setCitta(eElement.getElementsByTagName("citta").item(0).getTextContent());
-                    clie[itr].setCitta(eElement.getElementsByTagName("numTel").item(0).getTextContent());
-                    clie[itr].setMail(eElement.getElementsByTagName("mail").item(0).getTextContent());
-                    clie[itr].setPec(eElement.getElementsByTagName("pec").item(0).getTextContent());
+                    Cliente clie = new Cliente();
+                    clie.setAff(Integer.parseInt(eElement.getElementsByTagName("Aff").item(0).getTextContent()));
+                    clie.setRagSoc(eElement.getElementsByTagName("RagSoc").item(0).getTextContent());
+                    clie.setIndirizzo(eElement.getElementsByTagName("Indirizzo").item(0).getTextContent());
+                    clie.setpIva(eElement.getElementsByTagName("pIva").item(0).getTextContent());
+                    clie.setCitta(eElement.getElementsByTagName("citta").item(0).getTextContent());
+                    clie.setnTelefono(eElement.getElementsByTagName("numTel").item(0).getTextContent());
+                    clie.setMail(eElement.getElementsByTagName("mail").item(0).getTextContent());
+                    clie.setPec(eElement.getElementsByTagName("pec").item(0).getTextContent());
+                    clie.setNc(eElement.getElementsByTagName("Note").item(0).getTextContent());
+                    clieList.add(clie);
                 }
             }
-            printPersonaArray(clie);
-            return clie;
+            printPersonaArray(clieList);
+            return clieList;
         } catch (Exception e) {
             e.printStackTrace();
         }

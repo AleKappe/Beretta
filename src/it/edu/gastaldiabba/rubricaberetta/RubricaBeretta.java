@@ -39,8 +39,7 @@ public class RubricaBeretta extends Application {
         File path = Cliente.scegliFile();
         
         System.out.println(path.getPath());
-        Cliente[] Clie;
-        Clie = Cliente.caricaArrayDaFileXML(path.getPath());
+        
     }
 
 }
