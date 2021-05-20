@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
 <?import java.net.URL?>
 <?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Button?>
@@ -12,11 +17,11 @@
 <?import javafx.scene.paint.RadialGradient?>
 <?import javafx.scene.paint.Stop?>
 
-<Pane fx:id="sfondo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="background" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane fx:id="sfondo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="709.0" prefWidth="976.0" styleClass="background" stylesheets="@../../../../../../../../../Condivisa%20papa/Ale/Beretta/src/it/edu/gastaldiabba/rubricaberetta/view/dark_mode.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane fx:id="background" layoutX="176.0" layoutY="119.0" prefHeight="279.0" prefWidth="245.0">
          <children>
-            <ListView layoutX="-1.0" layoutY="-3.0" prefHeight="279.0" prefWidth="245.0" />
+            <ListView layoutX="14.0" prefHeight="361.0" prefWidth="545.0" />
          </children>
       </AnchorPane>
       <ToggleButton layoutX="77.0" layoutY="207.0" mnemonicParsing="false" text="filtro 2" />
@@ -31,28 +36,27 @@
                   </Stop>
                   <Stop offset="1.0">
                      <color>
-                        <Color red="1.0" green="1.0" blue="1.0" />
+                        <Color blue="1.0" green="1.0" red="1.0" />
                      </color>
                   </Stop>
                </stops>
             </RadialGradient>
          </textFill></ToggleButton>
-      <Button fx:id="bottone_aggiungi" layoutX="176.0" layoutY="74.0" mnemonicParsing="false" text="Aggiungi" />
-      <Button fx:id="bottone_elimina" layoutX="255.0" layoutY="74.0" mnemonicParsing="false" text="Elimina" />
+      <Button fx:id="bottone_aggiungi" layoutX="261.0" layoutY="49.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="123.0" text="Aggiungi">
+         <font>
+            <Font size="18.0" />
+         </font></Button>
+      <Button fx:id="bottone_elimina" layoutX="513.0" layoutY="49.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="123.0" text="Elimina">
+         <font>
+            <Font size="18.0" />
+         </font></Button>
       <Accordion layoutX="14.0" layoutY="119.0" prefHeight="51.0" prefWidth="123.0">
         <panes>
           <TitledPane fx:id="ordina_per_aperto" animated="false" prefHeight="52.0" prefWidth="143.0" text="ordina per" />
         </panes>
       </Accordion>
-      <AnchorPane layoutX="411.0" layoutY="119.0" prefHeight="279.0" prefWidth="102.0">
-         <children>
-            <ListView layoutX="24.0" layoutY="-6.0" prefHeight="279.0" prefWidth="151.0" />
-         </children>
-      </AnchorPane>
-      <ToggleButton fx:id="dark_mode" layoutX="14.0" layoutY="29.0" mnemonicParsing="false" text="Dark Mode" />
+      <AnchorPane layoutX="411.0" layoutY="119.0" prefHeight="279.0" prefWidth="102.0" />
+      <ListView layoutX="760.0" layoutY="120.0" prefHeight="575.0" prefWidth="205.0" />
+      <TextArea fx:id="arae_bella" layoutX="189.0" layoutY="495.0" prefHeight="200.0" prefWidth="545.0" />
    </children>
-   <stylesheets>
-      <URL value="@dark_mode.css" />
-      <URL value="@beretta.css" />
-   </stylesheets>
 </Pane>
