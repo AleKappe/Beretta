@@ -5,16 +5,16 @@
  */
 package it.edu.gastaldiabba.rubricaberetta.controller;
 
+import it.edu.gastaldiabba.rubricaberetta.model.Cliente;
+import it.edu.gastaldiabba.rubricaberetta.model.ManageClienti;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TitledPane;
-import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
@@ -23,14 +23,14 @@ import javafx.scene.layout.Pane;
  *
  * @author alecappe
  */
-public class Beretta_guiController implements Initializable {
+public class PrincipaleController implements Initializable {
 
     @FXML
     private Pane sfondo;
     @FXML
     private AnchorPane background;
     @FXML
-    private ListView<String> lista;
+    private ListView<Cliente> lista_RagSoc;// lista ragSoc
     @FXML
     private Button bottone_aggiungi;
     @FXML
@@ -38,9 +38,9 @@ public class Beretta_guiController implements Initializable {
     @FXML
     private TitledPane ordina_per_aperto;
     @FXML
-    private ToggleButton dark_mode;
-    
-    ObservableList<String> listview = FXCollections.observableArrayList("item 1","Item 2");
+    private ListView<Cliente> Note;// lista note
+    @FXML
+    private TextArea arae_bella; //text area per mostrare i dettagli
 
     /**
      * Initializes the controller class.
@@ -48,7 +48,8 @@ public class Beretta_guiController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        this.lista.setItems(listview);
+        String filename = "C:/Users/alecappe/Desktop/file_vari/BerettaClienti.xml";
+        this.lista_RagSoc.getItems().addAll(ManageClienti.caricaArrayDaFileXML(filename));
     }    
     
 }

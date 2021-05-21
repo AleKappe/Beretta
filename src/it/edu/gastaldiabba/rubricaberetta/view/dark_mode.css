@@ -59,9 +59,26 @@
     -fx-text-fill:rgb(0, 139, 0);
 }
 
+#bottone_aggiungi:hover{
+	-fx-background-color:#008b00;
+	-fx-text-fill:#1d2942;
+}
+
 
 #bottone_elimina{
     -fx-background-color:rgb(29, 41, 66);
     -fx-border-color:rgb(211, 4, 4);
     -fx-text-fill:rgb(211, 4, 4);
 }
+
+#bottone_elimina:hover{
+	-fx-background-color:#d30404;
+	-fx-text-fill:#1d2942;
+}
+
+.text-area *.content {
+    -fx-background-color:#1d2942; /*text-area . content non regge rgb*/
+	-fx-border-color:#1fa5ff;
+	/*-fx-border-radius:20;*/
+}
+
