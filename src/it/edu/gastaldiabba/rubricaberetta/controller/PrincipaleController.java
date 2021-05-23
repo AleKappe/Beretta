@@ -8,6 +8,7 @@ package it.edu.gastaldiabba.rubricaberetta.controller;
 import it.edu.gastaldiabba.rubricaberetta.model.Cliente;
 import it.edu.gastaldiabba.rubricaberetta.model.ManageClienti;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -30,7 +31,7 @@ public class PrincipaleController implements Initializable {
     @FXML
     private AnchorPane background;
     @FXML
-    private ListView<Cliente> lista_RagSoc;// lista ragSoc
+    private ListView<String> lista_RagSoc;// lista ragSoc
     @FXML
     private Button bottone_aggiungi;
     @FXML
@@ -42,14 +43,23 @@ public class PrincipaleController implements Initializable {
     @FXML
     private TextArea arae_bella; //text area per mostrare i dettagli
 
+    private String filename = "resurces/BerettaClienti.xml";
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        String filename = "C:/Users/alecappe/Desktop/file_vari/BerettaClienti.xml";
-        this.lista_RagSoc.getItems().addAll(ManageClienti.caricaArrayDaFileXML(filename));
+        
+        this.lista_RagSoc.getItems().addAll(CaricaLista());
     }    
     
+    public ArrayList<String> CaricaLista(){
+        int aff = 0;
+        ArrayList<Cliente> Clie = new ArrayList<Cliente>();
+        ArrayList<String> Ls = new ArrayList<String>();
+        Clie = ManageClienti.caricaArrayDaFileXML(this.filename);
+        Ls = ManageClienti.ragSocList(Clie, "", aff, filename);
+        return Ls;
+    }
 }

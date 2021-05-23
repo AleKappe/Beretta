@@ -140,7 +140,18 @@ public class ManageClienti {
         
         return RagSoc;
     }
-    
+    //Metodo per caricare il filtro
+    //
+    //
+    public static ArrayList<String> LoadCities(ArrayList<Cliente> Clie){
+        ArrayList<String> City = new ArrayList<String>();
+        for (Cliente Cln : Clie) {
+          City.add(Cln.getCitta());
+        }
+        return City;
+    }
+    //
+    //
     public static ArrayList<Cliente> caricaArrayDaFileXML(String pathname){
 
         try {

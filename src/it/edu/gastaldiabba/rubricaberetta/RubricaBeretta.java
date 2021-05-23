@@ -25,7 +25,7 @@ public class RubricaBeretta extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("view/principale.fxml"));
        
         //Temporanea lettura da file cablata per sviluppare //////////////////
-       String filename = "C:/Users/alecappe/Desktop/file_vari/BerettaClienti.xml";
+       String filename = "resurces/BerettaClienti.xml";
 //////////////////////////////////////////////////////////////////////
         
         ArrayList<Cliente> ClientiDaFile;//lista dei nomi delle societa
