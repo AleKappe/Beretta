@@ -57,8 +57,8 @@ public class PrincipaleController implements Initializable {
     
     public ArrayList<String> CaricaLista(){
         int aff = 0;
-        String citta = "";
-        String ordine = "";
+        String citta = "*";
+        String ordine = "Aff";
         
         ArrayList<Cliente> Clie = new ArrayList<Cliente>();
         ArrayList<String> Ls = new ArrayList<String>();
