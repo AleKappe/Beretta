@@ -32,14 +32,20 @@ public class ManageClienti {
     /////////////////////////////////////////////////
     // GESTIONE DEGLI ORDINAMENTI E METODI COMPARE //
     /////////////////////////////////////////////////
-    
+    static int compareCity(String a, String b) {
+        return a.compareToIgnoreCase(b);
+    }
+        
     static int compareRagSoc(Cliente a, Cliente b) {
         return a.getRagSoc().compareToIgnoreCase(b.getRagSoc());
     } 
     
     static int compareAff(Cliente a, Cliente b) {
-        return a.getAff() - b.getAff();
+        return b.getAff() - a.getAff();
     } 
+    static Integer compareInt(Integer a, Integer b) {
+        return b - a;
+    }
     public static ArrayList<Cliente> sortClienti(ArrayList<Cliente> Clie, String type) {
         //Al metodo sort dell'oggetto ArrayList passiamo come argomento 
         //una funzione da usare ossia il metodo compareRagSoc o compareAff
@@ -60,7 +66,7 @@ public class ManageClienti {
     
     public static ArrayList<Cliente> filterForCity(ArrayList<Cliente> Clie, String city) {
         
-        if (!city.isEmpty()) {
+        if (!(city.isEmpty() || city.equals("*"))) {
             ArrayList<Cliente> clieList = new ArrayList<Cliente>();
         
             for (Cliente Cln : Clie) {
@@ -76,7 +82,8 @@ public class ManageClienti {
 
     public static ArrayList<Cliente> filterForReliability(ArrayList<Cliente> Clie, Integer aff) {
         //TO DO Aff deve essere un numero maggiore o uguale a 0
-        if (aff>=0) {
+        //se 0 npn filtra
+        if (aff>0) {
             ArrayList<Cliente> clieList = new ArrayList<Cliente>();
             for (Cliente Cln : Clie) {
                if (Cln.getAff() >= aff) {
@@ -118,13 +125,14 @@ public class ManageClienti {
                                                Integer fAff,//filtro per maggiore uguale affidabilita se null non filtra
                                                String ord) {//per ragione sociale o Affidabilita o niente
         ArrayList<String> RagSoc = new ArrayList<String>();
-        if (fAff == null) {
+        if (fAff == null || fAff == 0) {
             fAff = -1;
         }
         if (!Clie.isEmpty()) {
            ArrayList<Cliente> clieList = new ArrayList<Cliente>();
-        
+           
            clieList = ManageClienti.filterForCity(Clie, fCity);
+        
            if (!clieList.isEmpty()) {
                clieList = ManageClienti.filterForReliability(clieList, fAff);
            }
@@ -146,11 +154,27 @@ public class ManageClienti {
     public static ArrayList<String> LoadCities(ArrayList<Cliente> Clie){
         ArrayList<String> City = new ArrayList<String>();
         for (Cliente Cln : Clie) {
-          City.add(Cln.getCitta());
+          String item = Cln.getCitta();
+          if(!City.contains(item))
+              City.add(item);
         }
+        if(!City.contains("*"))
+              City.add("*");
+        City.sort(ManageClienti::compareCity);
         return City;
     }
-    //
+    public static ArrayList<Integer> LoadAff(ArrayList<Cliente> Clie){
+        ArrayList<Integer> Aff = new ArrayList<Integer>();
+        for (Cliente Cln : Clie) {
+          Integer item = Cln.getAff();
+          if(!Aff.contains(item))
+              Aff.add(item);
+        }
+        if(!Aff.contains(0))
+              Aff.add(0);
+        Aff.sort(ManageClienti::compareInt);
+        return Aff;
+    }
     //
     public static ArrayList<Cliente> caricaArrayDaFileXML(String pathname){
 

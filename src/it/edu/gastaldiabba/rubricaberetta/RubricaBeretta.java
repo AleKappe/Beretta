@@ -58,7 +58,7 @@ public class RubricaBeretta extends Application {
 
 //CREAZIONE DELLA LISTA DELLE SOLE RAGIONI SOCIALI PER LA LISTA widget
     //filtri e ordinamento provenienti dai widget
-    String filtrocitta = "";
+    String filtrocitta = "*";
     Integer filtroAffidabilita = 0;
     String ordinamento = "Aff";
     
@@ -66,14 +66,21 @@ public class RubricaBeretta extends Application {
     System.out.println("lista societa con filtro citta:" + filtrocitta +" filtro affidabilita:"+ filtroAffidabilita.toString()+" filtro ordinamento:"+ordinamento +":");
     System.out.println(listaSocieta.toString());
         
-    filtrocitta = "";    
+    filtrocitta = "*";    
     ordinamento = "RagSoc";
-    filtroAffidabilita = 0;
+    filtroAffidabilita = 5;
     
         listaSocieta = ManageClienti.ragSocList(ClientiDaFile, filtrocitta, filtroAffidabilita, ordinamento);
     System.out.println("lista societa con filtro citta:" + filtrocitta +" filtro affidabilita:"+ filtroAffidabilita.toString()+" filtro ordinamento:"+ordinamento +":");
     System.out.println(listaSocieta.toString());
-        
+    
+    ArrayList<String> ListaCitta = new ArrayList<String>();
+    ListaCitta = ManageClienti.LoadCities(ClientiDaFile);
+    System.out.println("Lista città univoca " + ListaCitta.toString());
+    
+    ArrayList<Integer> ListaAff = new ArrayList<Integer>();
+    ListaAff = ManageClienti.LoadAff(ClientiDaFile);
+    System.out.println("Lista Aff univoca " + ListaAff.toString());
         Scene scene = new Scene(root);
         
         stage.setScene(scene);

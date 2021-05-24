@@ -2,6 +2,18 @@
 <clienti>
 
 <cliente>
+<Aff>5</Aff>
+<RagSoc>ZanteIndustries</RagSoc>
+<Indirizzo>Via grecia</Indirizzo>
+<pIva>12345678901</pIva>
+<citta>Zante</citta>
+<numTel>0442548901</numTel>
+<mail>Beretta@gmail.com</mail>
+<pec>Beretta@pec.it</pec>
+<Note>Bla bla bla</Note>
+</cliente>
+
+<cliente>
 <Aff>8</Aff>
 <RagSoc>Salame Piccante</RagSoc>
 <Indirizzo>Via Beretta</Indirizzo>

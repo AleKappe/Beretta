@@ -10,9 +10,11 @@ import it.edu.gastaldiabba.rubricaberetta.model.ManageClienti;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TitledPane;
@@ -50,16 +52,20 @@ public class PrincipaleController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        
         this.lista_RagSoc.getItems().addAll(CaricaLista());
     }    
     
     public ArrayList<String> CaricaLista(){
         int aff = 0;
+        String citta = "";
+        String ordine = "";
+        
         ArrayList<Cliente> Clie = new ArrayList<Cliente>();
         ArrayList<String> Ls = new ArrayList<String>();
         Clie = ManageClienti.caricaArrayDaFileXML(this.filename);
-        Ls = ManageClienti.ragSocList(Clie, "", aff, filename);
+        
+        Ls = ManageClienti.ragSocList(Clie, citta, aff, ordine );//Lista ,filtro Citta , filtroAff , Ordinamento Aff o RagSoc
         return Ls;
     }
+    
 }
