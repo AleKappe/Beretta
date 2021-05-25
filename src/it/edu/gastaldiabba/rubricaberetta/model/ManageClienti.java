@@ -6,9 +6,18 @@
 package it.edu.gastaldiabba.rubricaberetta.model;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -229,6 +238,94 @@ public class ManageClienti {
         }
         return null;
     }
+    
+    /*
+    *  
+    */
+    public static void salvaArraySuFileXML(ArrayList<Cliente> Clie, String pathname) throws ParserConfigurationException, TransformerConfigurationException, TransformerException, IOException {
+
+        try {
+        DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+        Document document = docBuilder.newDocument();
+
+        // root element
+        Element root = document.createElement("clienti");
+        document.appendChild(root);
+        
+        for (Cliente Cln : Clie) { 
+        // elemento cliente
+            Element cliitem = document.createElement("cliente");
+            root.appendChild(cliitem);
+        
+            Element aff = document.createElement("Aff");
+            aff.appendChild(document.createTextNode(String.valueOf(Cln.getAff())));
+            cliitem.appendChild(aff);
+
+            Element ragsoc = document.createElement("RagSoc");
+            ragsoc.appendChild(document.createTextNode(Cln.getRagSoc()));
+            cliitem.appendChild(ragsoc);
+            
+            Element addr = document.createElement("Indirizzo");
+            addr.appendChild(document.createTextNode(Cln.getIndirizzo()));
+            cliitem.appendChild(addr);
+            
+            Element piva = document.createElement("pIva");
+            piva.appendChild(document.createTextNode(Cln.getpIva()));
+            cliitem.appendChild(piva);
+            
+            Element citta = document.createElement("citta");
+            citta.appendChild(document.createTextNode(Cln.getCitta()));
+            cliitem.appendChild(citta);
+            
+            Element tell = document.createElement("numTel");
+            tell.appendChild(document.createTextNode(Cln.getnTelefono()));
+            cliitem.appendChild(tell);
+            
+            Element mail = document.createElement("mail");
+            mail.appendChild(document.createTextNode(Cln.getMail()));
+            cliitem.appendChild(mail);
+            
+            Element pec = document.createElement("pec");
+            pec.appendChild(document.createTextNode(Cln.getPec()));
+            cliitem.appendChild(pec);
+            
+            Element Note = document.createElement("Note");
+            Note.appendChild(document.createTextNode(Cln.getPec()));
+            cliitem.appendChild(Note);
+            
+        }
+     
+        // create the xml file
+        //transform the DOM Object to an XML File
+        TransformerFactory transformerFactory = TransformerFactory.newInstance();
+        Transformer transformer = transformerFactory.newTransformer();
+        //to write line break and indent
+        transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
+        transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+        //
+        DOMSource domSource = new DOMSource(document);
+        //StreamResult streamResult = new StreamResult(System.out);
+        StreamResult streamResult = new StreamResult(new File(pathname));
+ 
+            // If you use
+            // StreamResult result = new StreamResult(System.out);
+            // the output will be pushed to the standard output ...
+            // You can use that for debugging 
+ 
+        transformer.transform(domSource, streamResult);
+        
+       
+                   System.out.println("Done creating XML File");
+ 
+        } catch (ParserConfigurationException pce) {
+            pce.printStackTrace();
+        } catch (TransformerException tfe) {
+            tfe.printStackTrace();
+        }
+    
+    }
+    
     
 }
 

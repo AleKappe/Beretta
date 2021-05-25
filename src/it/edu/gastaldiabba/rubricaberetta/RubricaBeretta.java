@@ -24,15 +24,18 @@ public class RubricaBeretta extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("view/RubricaGui.fxml"));
-/*       
+ /*     
         //Temporanea lettura da file cablata per sviluppare //////////////////
        String filename = "resurces/BerettaClienti.xml";
+       String filenamesave = "resurces/BerettaClienti_saved.xml";
 //////////////////////////////////////////////////////////////////////
-        
+       
         ArrayList<Cliente> ClientiDaFile;//lista dei nomi delle societa
         ArrayList<String> listaSocieta; //lista dei nomi delle societa
         ClientiDaFile = ManageClienti.caricaArrayDaFileXML(filename);
+        ManageClienti.salvaArraySuFileXML(ClientiDaFile, filenamesave);
         System.out.println();
+ /*
     //FILTRO PER CITTA
         ManageClienti.filterForCity(ClientiDaFile, "Genova");
         System.out.println();

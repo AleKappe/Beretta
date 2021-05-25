@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<clienti>
+    <cliente>
+        <Aff>5</Aff>
+        <RagSoc>ZanteIndustries</RagSoc>
+        <Indirizzo>Via grecia</Indirizzo>
+        <pIva>12345678901</pIva>
+        <citta>Zante</citta>
+        <numTel>0442548901</numTel>
+        <mail>Beretta@gmail.com</mail>
+        <pec>Beretta@pec.it</pec>
+        <Note>Beretta@pec.it</Note>
+    </cliente>
+    <cliente>
+        <Aff>8</Aff>
+        <RagSoc>Salame Piccante</RagSoc>
+        <Indirizzo>Via Beretta</Indirizzo>
+        <pIva>12345678901</pIva>
+        <citta>Genova</citta>
+        <numTel>0442548901</numTel>
+        <mail>Beretta@gmail.com</mail>
+        <pec>Beretta@pec.it</pec>
+        <Note>Beretta@pec.it</Note>
+    </cliente>
+    <cliente>
+        <Aff>10</Aff>
+        <RagSoc>Asiago</RagSoc>
+        <Indirizzo>Via Beretta</Indirizzo>
+        <pIva>12345678901</pIva>
+        <citta>Genova</citta>
+        <numTel>0442548901</numTel>
+        <mail>Beretta@gmail.com</mail>
+        <pec>Beretta@pec.it</pec>
+        <Note>Beretta@pec.it</Note>
+    </cliente>
+    <cliente>
+        <Aff>9</Aff>
+        <RagSoc>Tonno</RagSoc>
+        <Indirizzo>Via Beretta</Indirizzo>
+        <pIva>12345678901</pIva>
+        <citta>Torino</citta>
+        <numTel>0442548901</numTel>
+        <mail>Beretta@gmail.com</mail>
+        <pec>Beretta@pec.it</pec>
+        <Note>Beretta@pec.it</Note>
+    </cliente>
+    <cliente>
+        <Aff>2</Aff>
+        <RagSoc>Piccante</RagSoc>
+        <Indirizzo>Via Beretta</Indirizzo>
+        <pIva>02345678901</pIva>
+        <citta>Torino</citta>
+        <numTel>0442548901</numTel>
+        <mail>Beretta@gmail.com</mail>
+        <pec>Beretta@pec.it</pec>
+        <Note>Beretta@pec.it</Note>
+    </cliente>
+</clienti>
