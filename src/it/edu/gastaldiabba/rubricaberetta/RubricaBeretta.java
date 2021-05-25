@@ -13,6 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.util.ArrayList;
+import javafx.event.EventType;
 
 /**
  *
@@ -22,8 +23,8 @@ public class RubricaBeretta extends Application {
      
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("view/principale.fxml"));
-       
+        Parent root = FXMLLoader.load(getClass().getResource("view/RubricaGui.fxml"));
+/*       
         //Temporanea lettura da file cablata per sviluppare //////////////////
        String filename = "resurces/BerettaClienti.xml";
 //////////////////////////////////////////////////////////////////////
@@ -81,8 +82,9 @@ public class RubricaBeretta extends Application {
     ArrayList<Integer> ListaAff = new ArrayList<Integer>();
     ListaAff = ManageClienti.LoadAff(ClientiDaFile);
     System.out.println("Lista Aff univoca " + ListaAff.toString());
+        */
         Scene scene = new Scene(root);
-        
+       
         stage.setScene(scene);
         stage.show();
     }

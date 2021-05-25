@@ -51,9 +51,9 @@ public class ManageClienti {
         //una funzione da usare ossia il metodo compareRagSoc o compareAff
         //per fare cio' usiamo la sintassi classe::metodo e non la chiamata 
         //del metodo statico class.metodo(parametri)
-        if (type.equals("RagSoc")) {
+        if (type.equals("Ragione Sociale")) {
             Clie.sort(ManageClienti::compareRagSoc);
-        }else if(type.equals("Aff"))  { 
+        }else if(type.equals("Affidabilita"))  { 
             Clie.sort(ManageClienti::compareAff); 
         }
         return Clie;
@@ -176,6 +176,17 @@ public class ManageClienti {
         return Aff;
     }
     //
+    
+    public static Cliente getCliente(ArrayList<Cliente> Clie, String ragsoc) {
+        Cliente cliOut = new Cliente();
+        for (Cliente Cln : Clie) {
+            if(Cln.getRagSoc().equals(ragsoc)){
+                cliOut = Cln;
+                break;
+            }
+        }
+        return cliOut;
+    }
     public static ArrayList<Cliente> caricaArrayDaFileXML(String pathname){
 
         try {
@@ -211,7 +222,7 @@ public class ManageClienti {
                     clieList.add(clie);
                 }
             }
-            printPersonaArray(clieList);
+            //printPersonaArray(clieList);
             return clieList;
         } catch (Exception e) {
             e.printStackTrace();
