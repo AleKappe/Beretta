@@ -87,8 +87,9 @@ public class RubricaBeretta extends Application {
     System.out.println("Lista Aff univoca " + ListaAff.toString());
         */
         Scene scene = new Scene(root);
-       
         stage.setScene(scene);
+        stage.setTitle("B"+ "\u03A3"+"reTTa");
+        stage.setResizable(false);
         stage.show();
     }
     
