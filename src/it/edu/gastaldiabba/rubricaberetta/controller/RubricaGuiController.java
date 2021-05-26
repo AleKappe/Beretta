@@ -8,9 +8,16 @@ package it.edu.gastaldiabba.rubricaberetta.controller;
 import it.edu.gastaldiabba.rubricaberetta.model.Cliente;
 import it.edu.gastaldiabba.rubricaberetta.model.ManageClienti;
 import java.awt.event.ActionEvent;
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -25,6 +32,8 @@ import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
 
 /**
  * FXML Controller class
@@ -118,6 +127,19 @@ public class RubricaGuiController implements Initializable {
         this.OrdBocx.getItems().addAll("Ragione Sociale", "Affidabilita");
         this.OrdBocx.setValue("Ragione Sociale");
         this.OrdBocx.setOnAction(eh -> { RefreshLista(); });
+        this.bottone_salva.setOnMouseClicked(eh -> { saveOnFile(); });
+        this.bottone_svuota.setOnMouseClicked(eh -> { RefreshLista(); });
+        this.bottone_aggiungi.setOnMouseClicked(eh -> { 
+            addNewCliente();
+            RefreshLista();});
+        this.bottone_elimina.setOnMouseClicked(eh -> { 
+            deleteCliente(); 
+            RefreshLista();});
+        this.bottone_modifica.setOnMouseClicked(eh -> { 
+            deleteCliente(); 
+            addNewCliente();
+            RefreshLista();});
+        
         //Gestione lista: cariamento configurazione
         
         obslista = obsCaricaListaRag(this.ClientiView, 
@@ -137,10 +159,73 @@ public class RubricaGuiController implements Initializable {
                     }
                 });
     }
-    public void ShowData(){
+    
+   
+    
+    public void addNewCliente(){
+        Cliente cli = new Cliente();
         
+        cli.setAff(Integer.parseInt(tAff.getText()));
+        cli.setRagSoc(tRagSoc.getText());
+        cli.setMail(tMail.getText());
+        cli.setPec(tPec.getText());
+        cli.setnTelefono(tPhone.getText());
+        cli.setpIva(tIva.getText());
+        cli.setIndirizzo(tAddress.getText());
+        cli.setCitta(tCity.getText());
+        cli.setNc(tNote.getText());
+       
+        ClientiView.add(cli);
+       
     }
     
+    public void deleteCliente(){
+        //Estraggo la ragione sociale attualmente selezionata nella listview
+        String tobedelete = this.lista.getSelectionModel().getSelectedItem();
+        //estraggo il cliente con la ragione sociale selezionata dall'arraylist clienti       
+        Cliente clitoberemove = ManageClienti.getragSoc(ClientiView, tobedelete);
+        //rimuovo il cliente dalla arraylist
+        ClientiView.remove(clitoberemove);
+        //ricarico la listview
+       
+    }
+    
+    
+    public void saveOnFile(){
+        
+        String patholdfile = filename.replace("xml", "old");
+        File fxml = new File(this.filename);//newfile .xml
+        File oldxml = new File(patholdfile);//oldfile .old
+        
+        if(fxml.exists() && !fxml.isDirectory()) {
+            //Se c'e' il file xml
+            if(oldxml.exists() && !oldxml.isDirectory()) { 
+                //se c'e' il file old lo cancello
+                oldxml.delete();
+            }
+            //rename del file .xml in file .old
+            Path path = Paths.get(filename);                         // /resources/ e BerettaClienti.xml
+            // call getFileName() and get FileName path object
+            Path fName = path.getFileName();                         //BerettaClienti.xml
+            String oldfile = fName.toString().replace("xml", "old"); // BerettaClienti.old
+            Path source = Paths.get(filename);                       //path /resources/
+            try {
+                Files.move(source, source.resolveSibling(oldfile)); //rimonina 
+            } catch (IOException ex) {
+                Logger.getLogger(RubricaGuiController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        try {
+            //scrittura del nuovo .xml
+            ManageClienti.salvaArraySuFileXML(ClientiView, filename);
+        } catch (ParserConfigurationException ex) {
+            Logger.getLogger(RubricaGuiController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (TransformerException ex) {
+            Logger.getLogger(RubricaGuiController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(RubricaGuiController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
     public void selectedRagSoc(String ragsoc) {
         Cliente cli = ManageClienti.getCliente(ClientiView, ragsoc);

@@ -196,6 +196,7 @@ public class ManageClienti {
         }
         return cliOut;
     }
+    
     public static ArrayList<Cliente> caricaArrayDaFileXML(String pathname){
 
         try {
@@ -291,7 +292,7 @@ public class ManageClienti {
             cliitem.appendChild(pec);
             
             Element Note = document.createElement("Note");
-            Note.appendChild(document.createTextNode(Cln.getPec()));
+            Note.appendChild(document.createTextNode(Cln.getNc()));
             cliitem.appendChild(Note);
             
         }
@@ -316,7 +317,7 @@ public class ManageClienti {
         transformer.transform(domSource, streamResult);
         
        
-                   System.out.println("Done creating XML File");
+        System.out.println("Done creating XML File");
  
         } catch (ParserConfigurationException pce) {
             pce.printStackTrace();
